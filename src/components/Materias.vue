@@ -54,7 +54,7 @@
 </template>
 
 <script>
-var materiaService = require("../service/MateriaService");
+var materiaService = null;
 
 export default {
   name: "Alunos",
@@ -65,6 +65,8 @@ export default {
     };
   },
   created: function() {
+    debugger
+    materiaService = this.$store.getters.materialService
     this.materias = materiaService.list();
   },
   methods: {

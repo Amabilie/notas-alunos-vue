@@ -24,18 +24,17 @@ exports.excluir = (nomeMateria) => {
     for (index in materias) {
         var materia = materias[index]
 
-        if(materia.nome == nomeMateria){
+        if (materia.nome == nomeMateria) {
             materias.splice(index, 1)
         }
     }
 }
-exports.editarMateria = (nomeMateria) => {
-    debugger
+exports.editarMateria = (editarMateria) => {
     for (index in materias) {
-        var materia = materias [index]
+        var materia = materias[index]
 
-        if(materia.nome == editarMateria){
-        materias.edit (index, 1)
+        if (materia.nome == editarMateria) {
+            materias.edit(index, 1)
         }
     }
 }
