@@ -1,23 +1,41 @@
 
 var materias = [
     {
-      title: "Jason Oner",
-      avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+        nome: "Português"
     },
     {
-      title: "Travis Howard",
-      avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+        nome: "Matemática"
     },
     {
-      title: "Ali Connors",
-      avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+        nome: "História"
     },
     {
-      title: "Cindy Baker",
-      avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        nome: "Geografia"
     }
-  ]
+]
 
 exports.list = () => {
     return materias
+}
+exports.incluir = (materia) => {
+    materias.push(materia)
+}
+exports.excluir = (nomeMateria) => {
+    for (index in materias) {
+        var materia = materias[index]
+
+        if(materia.nome == nomeMateria){
+            materias.splice(index, 1)
+        }
+    }
+}
+exports.editarMateria = (nomeMateria) => {
+    debugger
+    for (index in materias) {
+        var materia = materias [index]
+
+        if(materia.nome == editarMateria){
+        materias.edit (index, 1)
+        }
+    }
 }

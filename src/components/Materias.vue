@@ -30,21 +30,19 @@
 
           <v-card-actions>
             <v-flex>
-              <v-text-field v-model="email" :rules="emailRules" label="nome da disciplina" required></v-text-field>
+              <v-text-field v-model="nomeNovaMateria" label="nome da disciplina" required></v-text-field>
             </v-flex>
-            <v-btn flat color="orange" @click="teste()">Incluir</v-btn>
+            <v-btn flat color="green" @click="incluirMateria(nomeNovaMateria)">Incluir</v-btn>
           </v-card-actions>
           <v-card-actions>
             <v-flex>
               <v-list>
-                <v-list-tile v-for="materia in materias" :key="materia.title" :value="materias">
+                <v-list-tile v-for="materia in materias" :key="materia.nome" :value="materias">
                   <v-list-tile-content>
-                    <v-list-tile-title v-text="materia.title"></v-list-tile-title>
+                    <v-list-tile-title v-text="materia.nome"></v-list-tile-title>
                   </v-list-tile-content>
-
-                  <v-list-tile-avatar>
-                    <img :src="materia.avatar">
-                  </v-list-tile-avatar>
+                  <v-btn flat color="red" @click="excluirMateria(materia.nome)">Excluir</v-btn>
+                  <v-btn flat color="blue" @click="editarMateria(materia.nome)">Editar</v-btn>
                 </v-list-tile>
               </v-list>
             </v-flex>
@@ -62,12 +60,32 @@ export default {
   name: "Alunos",
   data() {
     return {
-      materias: materiaService.list()
+      materias: [],
+      nomeNovaMateria: null
     };
   },
+  created: function() {
+    this.materias = materiaService.list();
+  },
   methods: {
-    teste: () => {
+    teste: function() {
       console.log(this.materias);
+    },
+    incluirMateria: function(nomeMateria) {
+      var materia = {
+        nome: nomeMateria
+      };
+
+      materiaService.incluir(materia);
+      this.materias = materiaService.list();
+    },
+    excluirMateria: function(nomeMateria) {
+      materiaService.excluir(nomeMateria);
+      this.materias = materiaService.list();
+    },
+    editarMateria: function(editarMateria){
+      materiaService.editar(editarMateria);
+      this.materias = mteriaService.list();
     }
   }
 };
